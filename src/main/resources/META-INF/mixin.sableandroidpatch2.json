@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.sableandroid.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "SableRapierLoaderMixin",
+    "SableNativeExtractorMixin"
+  ],
+  "client": [
+    "SableGluesRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# NeoForge / MDG
+run/
+runs/
+.cache/
+
+# Nativo compilado (gerado pelo CI)
+src/main/resources/natives/android/arm64-v8a/*.so
+
+# Libs locais de compilação
+libs/*.jar
+
+# Rust (build local do rapier)
+scripts/sable_rapier_src/target/
+scripts/sable_rapier_src/Cargo.lock
+
+# macOS
+.DS_Store

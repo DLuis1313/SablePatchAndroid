@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = neo_version
+
+    parchment {
+        mappingsVersion = project.neogradle.subsystems.parchment.mappingsVersion
+        minecraftVersion = project.neogradle.subsystems.parchment.minecraftVersion
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    maven { url = "https://maven.blamejared.com" }
+    maven { url = "https://maven.tterrag.com/" }
+}
+
+dependencies {
+    // Sable 2.0.x como compile-only (não incluir no jar final)
+    // Baixar o jar do Sable e colocar em libs/ para compilar localmente
+    // No GitHub Actions usamos o CurseForge/Modrinth para baixar
+    compileOnly fileTree(dir: 'libs', include: ['sable-*.jar'])
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    from('src/main/resources') {
+        include 'META-INF/**'
+    }
+
+    manifest {
+        attributes([
+            'Specification-Title'     : mod_id,
+            'Specification-Vendor'    : 'sableandroid',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : mod_name,
+            'Implementation-Version'  : mod_version,
+            'Implementation-Vendor'   : 'sableandroid',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}

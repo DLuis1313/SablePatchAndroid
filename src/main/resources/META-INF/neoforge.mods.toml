@@ -1,0 +1,36 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+
+[[mods]]
+    modId = "${mod_id}"
+    version = "${mod_version}"
+    displayName = "${mod_name}"
+    description = '''
+Patches Sable 2.0.x to load correctly on Android via ZalithLauncher 2
+with MobileGlues renderer. Also improves compatibility with Create Aeronautics 1.3.x.
+Without this mod, Sable crashes on Android with UnsatisfiedLinkError
+when trying to load the sable_rapier native library.
+'''
+
+[[dependencies.sableandroidpatch2]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[21.1.0,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.sableandroidpatch2]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "${minecraft_version_range}"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.sableandroidpatch2]]
+    modId = "sable"
+    type = "required"
+    versionRange = "[2.0.0,2.1.0)"
+    ordering = "AFTER"
+    side = "BOTH"
+    
